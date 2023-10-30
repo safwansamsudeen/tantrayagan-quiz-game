@@ -1,3 +1,5 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+import questions from "./questions";
+
+export async function load() {
+  return { questions: questions.sort(() => 0.5 - Math.random()).slice(0, 10) };
+}

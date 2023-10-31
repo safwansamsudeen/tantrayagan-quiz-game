@@ -1,24 +1,31 @@
 <script>
     export let data;
     import Alert from "./Alert.svelte";
-    function checkAnswer(e, attempt, question) {
-        let color = "danger";
-        let props = { color, message: "Try again!" };
-        if (attempt === question.answer) {
-            color = "success";
-            props = {
-                color,
-                message: `Correct! The answer is indeed "${question[attempt]}".`,
-            };
+    import StartGame from "./StartGame.svelte";
+    import Pagination from "./Pagination.svelte";
+    import Questions from "./Questions.svelte";
+    import Stats from "./Stats.svelte";
+    import { onMount } from "svelte";
+
+    onMount(() => {
+        if (data.name) {
+            new Alert({
+                target: document.getElementById("alert-container"),
+                props: {
+                    color: "success",
+                    message: `Hello ${data.name}!`,
+                },
+            });
         }
+    });
 
-        new Alert({
-            target: document.getElementById("alert"),
-            props,
-        });
-
-        e.target.classList.add(`btn-${color}`);
-    }
+    let currentIndex = 0;
+    let stats = {
+        attempts: 0,
+        questionsCorrect: 0,
+        questionsCorrectOnFirstTry: 0,
+    };
+    $: gameCompleted = stats.questionsCorrect === data.NO_OF_Q;
 </script>
 
 <svelte:head>
@@ -27,48 +34,34 @@
 </svelte:head>
 
 <section>
-    <h1>Welcome to the Quiz Game</h1>
-    <div id="alert"></div>
-    {#each data.questions as question, index}
-        <p>{index + 1}. {question.question}</p>
-        <ul>
-            {#each ["A", "B", "C", "D"] as option}
-                <li>
-                    <button
-                        class="btn"
-                        on:click={(e) => checkAnswer(e, option, question)}
-                        >{question[option]}</button
-                    >
-                </li>
-            {/each}
-        </ul>
-    {/each}
+    <h1>Welcome to the GK Quiz Game</h1>
+    <div id="alert-container"></div>
+    {#if data.NO_OF_Q === -1}
+        <StartGame />
+    {/if}
+    <div class="container">
+        <div class="row">
+            {#if data.NO_OF_Q !== -1}
+                <div class="col">
+                    <h3 class="text-center">Current Quiz</h3>
+                    <Pagination bind:currentIndex NO_OF_Q={data.NO_OF_Q} />
+                    <Questions
+                        bind:stats
+                        questions={data.questions}
+                        {currentIndex}
+                    />
+                </div>
+            {/if}
+            <div class={gameCompleted ? "col-md-4" : "d-none"}>
+                <h3 class="text-center">Stats</h3>
+                <Stats {stats} />
+            </div>
+        </div>
+    </div>
 </section>
 
 <style>
-    ul {
-        list-style-type: none;
-        margin: 20px 10px;
-    }
-
-    li {
-        margin: 5px;
-    }
-
-    button {
-        border: 2px dotted black;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        width: 100%;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    #alert {
+    #alert-container {
         position: fixed;
         right: 30px;
         bottom: 20px;

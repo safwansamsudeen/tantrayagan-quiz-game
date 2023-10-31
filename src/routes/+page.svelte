@@ -64,7 +64,7 @@
     #alert-container {
         position: fixed;
         right: 30px;
-        bottom: 20px;
+        top: 20px;
         width: 50%;
         z-index: 9999;
         border-radius: 0px;

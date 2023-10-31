@@ -3,7 +3,7 @@
     import { confetti } from "@neoconfetti/svelte";
     import Alert from "./Alert.svelte";
     import { tick } from "svelte";
-    let isConfetti;
+    let isConfetti = false;
     function checkAnswer(e, attempt, question) {
         let color = "danger";
         let message = "Try again!";
@@ -16,7 +16,7 @@
                 stats.questionsCorrectOnFirstTry += 1;
                 message = `${message} You got it on your first try!`;
                 isConfetti = true;
-                tick().then(() => (isConfetti = false));
+                setTimeout(() => (isConfetti = false), 1000);
             }
         }
         new Alert({
@@ -26,10 +26,9 @@
                 message,
             },
         });
-
+        question.attempted = true;
         e.target.classList.add(`btn-${color}`);
         e.target.disabled = true;
-        question.attempted = true;
     }
 </script>
 

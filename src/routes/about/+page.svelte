@@ -10,7 +10,7 @@
         This is a <a href="https://kit.svelte.dev">SvelteKit</a> web app made by
         Safwan Samsudeen and Rayhan Ahmad.
     </p>
-    <p>Why? We used SvelteKit?</p>
+    <p>Why we used SvelteKit?</p>
     <p>What is our frontend and backend?</p>
     <p>Where did I get questions from?</p>
     <p>How do I do confetti?</p>

@@ -2,7 +2,6 @@
     export let questions, currentIndex, stats;
     import { confetti } from "@neoconfetti/svelte";
     import Alert from "./Alert.svelte";
-    import { tick } from "svelte";
     let isConfetti = false;
     function checkAnswer(e, attempt, question) {
         let color = "danger";

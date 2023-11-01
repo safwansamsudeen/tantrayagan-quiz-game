@@ -35,7 +35,11 @@
 </svelte:head>
 
 <section>
-    <h1>Welcome to the Tantrayagan Quiz Game</h1>
+    <h1>
+        Welcome to the Tantrayagan Quiz Game {data.name
+            ? `, ${data.name}`
+            : ""}.
+    </h1>
     <div id="alert-container"></div>
     {#if data.NO_OF_Q === -1}
         <StartGame />
@@ -43,14 +47,19 @@
     <div class="container">
         <div class="row">
             {#if data.NO_OF_Q !== -1}
-                <div class="col quiz-container">
+                <div class="col">
                     <h3 class="text-center">Current Quiz</h3>
-                    <Pagination bind:currentIndex questions={data.questions} />
-                    <Questions
-                        bind:stats
-                        questions={data.questions}
-                        {currentIndex}
-                    />
+                    <div class="quiz-container">
+                        <Pagination
+                            bind:currentIndex
+                            questions={data.questions}
+                        />
+                        <Questions
+                            bind:stats
+                            questions={data.questions}
+                            {currentIndex}
+                        />
+                    </div>
                 </div>
             {/if}
             <div class={gameCompleted ? "col-md-4" : "d-none"}>

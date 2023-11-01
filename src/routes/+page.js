@@ -9,6 +9,17 @@ export async function load({ url }) {
     .slice(0, NO_OF_Q)
     .map((q) => ({ ...q, marks: Math.ceil(Math.random() * 10) }));
   if (NO_OF_Q) {
+    if (+NO_OF_Q < 0) {
+      return {
+        questions: [],
+        NO_OF_Q: -1,
+        name,
+        alert: {
+          message: "Please provide a positive number!",
+          color: "danger",
+        },
+      };
+    }
     return {
       NO_OF_Q: +NO_OF_Q,
       questions: selectedQuestions,

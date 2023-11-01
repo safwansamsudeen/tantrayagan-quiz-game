@@ -20,7 +20,7 @@
                 stats.score += question.marks;
                 message = `${message} You got it on your first try!`;
                 isConfetti = true;
-                setTimeout(() => (isConfetti = false), 1000);
+                setTimeout(() => (isConfetti = false), 2000);
             }
         }
         // Give an alert with relevant message and color
@@ -45,7 +45,7 @@
     <div class={index !== currentIndex && "d-none"}>
         <p>
             {index + 1}. {question.question}
-            <span class="badge rounded-pill bg-info text-dark right-align"
+            <span class="badge rounded-pill bg-info text-dark"
                 >{question.marks}</span
             >
         </p>

@@ -1,23 +1,9 @@
 <script>
     export let data;
-    import Alert from "./Alert.svelte";
     import StartGame from "./StartGame.svelte";
     import Pagination from "./Pagination.svelte";
     import Questions from "./Questions.svelte";
     import Stats from "./Stats.svelte";
-    import { onMount } from "svelte";
-
-    onMount(() => {
-        if (data.name) {
-            new Alert({
-                target: document.getElementById("alert-container"),
-                props: {
-                    color: "success",
-                    message: `Hello ${data.name}!`,
-                },
-            });
-        }
-    });
 
     let currentIndex = 0;
     let stats = {

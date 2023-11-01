@@ -1,8 +1,28 @@
-<form action="/" class="my-5">
+<script>
+    let value;
+    import Alert from "./Alert.svelte";
+
+    function handleSubmit(e) {
+        console.log(value);
+        if (value <= 0) {
+            e.preventDefault();
+            new Alert({
+                target: document.getElementById("alert-container"),
+                props: {
+                    color: "danger",
+                    message: "Please enter a positive number!",
+                },
+            });
+        }
+    }
+</script>
+
+<form action="/" class="my-5" on:submit={handleSubmit}>
     <input
         class="form-control form-control-lg my-3"
         type="number"
         name="n"
+        bind:value
         placeholder="Number of Questions"
     />
     <input

@@ -1,5 +1,5 @@
 <script>
-    export let currentIndex, NO_OF_Q;
+    export let currentIndex, questions;
     function changeQuestion(currentQuestionIndex) {
         currentIndex = currentQuestionIndex;
     }
@@ -7,10 +7,16 @@
 
 <nav aria-label="Navigate Questions">
     <ul class="pagination pagination-lg justify-content-center">
-        {#each { length: NO_OF_Q } as _, index}
+        {#each questions as question, index}
             <li class="page-item">
                 <button
-                    class="page-link {index === currentIndex ? 'active' : ''}"
+                    class="page-link {index === currentIndex
+                        ? 'active'
+                        : ''} {question.correct
+                        ? 'correct'
+                        : question.attempted
+                        ? 'attempted'
+                        : ''}"
                     id="paginate-{index}"
                     on:click={() => changeQuestion(index)}>{index + 1}</button
                 >
@@ -18,3 +24,14 @@
         {/each}
     </ul>
 </nav>
+
+<style>
+    .correct {
+        background-color: #198754 !important;
+        color: #fff;
+    }
+    .attempted {
+        background-color: #ffc107 !important;
+        color: #fff;
+    }
+</style>

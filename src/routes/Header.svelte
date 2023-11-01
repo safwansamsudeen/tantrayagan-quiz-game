@@ -5,7 +5,7 @@
 
 <header>
     <div class="corner">
-        <h4 class="">Quiz</h4>
+        <h4 class="logo">TQG</h4>
     </div>
 
     <nav>
@@ -13,14 +13,10 @@
             <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
         </svg>
         <ul>
-            <li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
+            <li aria-current={$page.url.pathname === "/" ? "page" : ""}>
                 <a href="/">Home</a>
             </li>
-            <li
-                aria-current={$page.url.pathname === "/about"
-                    ? "page"
-                    : undefined}
-            >
+            <li aria-current={$page.url.pathname === "/about" ? "page" : ""}>
                 <a href="/about">About</a>
             </li>
         </ul>
@@ -40,6 +36,12 @@
     header {
         display: flex;
         justify-content: space-between;
+    }
+
+    .logo {
+        position: fixed;
+        left: 15px;
+        top: 10px;
     }
 
     .corner {
@@ -64,7 +66,7 @@
     nav {
         display: flex;
         justify-content: center;
-        --background: rgba(255, 255, 255, 0.7);
+        --background: #fff;
     }
 
     svg {
@@ -74,7 +76,7 @@
     }
 
     path {
-        fill: var(--background);
+        fill: #fff;
     }
 
     ul {
@@ -104,7 +106,7 @@
         top: 0;
         left: calc(50% - var(--size));
         border: var(--size) solid transparent;
-        border-top: var(--size) solid var(--color-theme-1);
+        border-top: var(--size) solid black;
     }
 
     nav a {
@@ -112,7 +114,7 @@
         height: 100%;
         align-items: center;
         padding: 0 0.5rem;
-        color: var(--color-text);
+        color: #000;
         font-weight: 700;
         font-size: 0.8rem;
         text-transform: uppercase;

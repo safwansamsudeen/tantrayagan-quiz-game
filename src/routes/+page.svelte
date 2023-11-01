@@ -24,6 +24,7 @@
         attempts: 0,
         questionsCorrect: 0,
         questionsCorrectOnFirstTry: 0,
+        score: 0,
     };
     $: gameCompleted = stats.questionsCorrect === data.NO_OF_Q;
 </script>
@@ -34,7 +35,7 @@
 </svelte:head>
 
 <section>
-    <h1>Welcome to the GK Quiz Game</h1>
+    <h1>Welcome to the Tantrayagan Quiz Game</h1>
     <div id="alert-container"></div>
     {#if data.NO_OF_Q === -1}
         <StartGame />
@@ -42,9 +43,9 @@
     <div class="container">
         <div class="row">
             {#if data.NO_OF_Q !== -1}
-                <div class="col">
+                <div class="col quiz-container">
                     <h3 class="text-center">Current Quiz</h3>
-                    <Pagination bind:currentIndex NO_OF_Q={data.NO_OF_Q} />
+                    <Pagination bind:currentIndex questions={data.questions} />
                     <Questions
                         bind:stats
                         questions={data.questions}
@@ -54,7 +55,7 @@
             {/if}
             <div class={gameCompleted ? "col-md-4" : "d-none"}>
                 <h3 class="text-center">Stats</h3>
-                <Stats {stats} />
+                <Stats {stats} NO_OF_Q={data.NO_OF_Q} />
             </div>
         </div>
     </div>

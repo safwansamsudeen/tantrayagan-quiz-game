@@ -15,7 +15,7 @@
         <br />
         Svelte is a JS framework that is a bit like React.js. It's extremely fast,
         allows for great reactivity, and is a beautiful framework to work with. We've
-        used it in the frontend
+        used it in the frontend.
         <br />
         SvelteKit is the backend of our website - it is the official backend used
         for Svelte apps.

@@ -36,9 +36,7 @@
 
 <section>
     <h1>
-        Welcome to the Tantrayagan Quiz Game {data.name
-            ? `, ${data.name}`
-            : ""}.
+        Welcome to the Tantrayagan Quiz Game{data.name ? `, ${data.name}` : ""}.
     </h1>
     <div id="alert-container"></div>
     {#if data.NO_OF_Q === -1}

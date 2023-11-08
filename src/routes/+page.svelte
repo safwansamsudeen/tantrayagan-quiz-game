@@ -31,7 +31,7 @@
     <div class="container">
         <div class="row">
             {#if data.NO_OF_Q !== -1}
-                <div class="col">
+                <div class={gameCompleted ? "col-md-8" : "col"}>
                     <h3 class="text-center">Current Quiz</h3>
                     <div class="quiz-container">
                         <Pagination

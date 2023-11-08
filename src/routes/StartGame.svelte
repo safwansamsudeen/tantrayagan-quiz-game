@@ -3,14 +3,13 @@
     import Alert from "./Alert.svelte";
 
     function handleSubmit(e) {
-        console.log(value);
-        if (value <= 0) {
+        if (value <= 0 || value > 25) {
             e.preventDefault();
             new Alert({
                 target: document.getElementById("alert-container"),
                 props: {
                     color: "danger",
-                    message: "Please enter a positive number!",
+                    message: "Please enter a number between 1 and 25!",
                 },
             });
         }
@@ -21,6 +20,8 @@
     <input
         class="form-control form-control-lg my-3"
         type="number"
+        min="0"
+        max="25"
         name="n"
         bind:value
         placeholder="Number of Questions"

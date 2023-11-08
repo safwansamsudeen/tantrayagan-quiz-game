@@ -6,7 +6,11 @@
 </script>
 
 <nav aria-label="Navigate Questions">
-    <ul class="pagination pagination-lg justify-content-center">
+    <ul
+        class="pagination {questions.length < 15 &&
+            'pagination-lg'} justify-content-center"
+        style="width: 100%; overflow: scroll;"
+    >
         {#each questions as question, index}
             <li class="page-item">
                 <button
